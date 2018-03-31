@@ -254,14 +254,14 @@ Valid options include any:
 
 - [Babel plugins](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/plugin-features.js) - both with (`@babel/plugin-transform-spread`) and without prefix (`plugin-transform-spread`) are supported.
 
-- [Built-ins](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/built-in-features.js), such as `es6.map`, `es6.set`, or `es6.object.assign`.
+- [Built-ins](https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/built-in-features.js), such as `es.map`, `es.set`, or `es.object.assign`.
 
 Plugin names can be fully or partially specified (or using `RegExp`).
 
 Acceptable inputs:
 
-- Full name (`string`): `"es6.math.sign"`
-- Partial name (`string`): `"es6.math.*"` (resolves to all plugins with `es6.math` prefix)
+- Full name (`string`): `"es.math.sign"`
+- Partial name (`string`): `"es.math.*"` (resolves to all plugins with `es.math` prefix)
 - `RegExp` Object: `/^transform-.*$/` or `new RegExp("^transform-modules-.*")`
 
 Note that the above `.` is the `RegExp` equivalent to match any character, and not the actual `'.'` character. Also note that to match any character `.*` is used in `RegExp` as opposed to `*` in `glob` format.
@@ -313,12 +313,12 @@ var b = new Map();
 **Out (if environment doesn't support it)**
 
 ```js
-import "core-js/modules/es6.promise";
+import "core-js/modules/es.promise";
 var a = new Promise();
 ```
 
 ```js
-import "core-js/modules/es6.map";
+import "core-js/modules/es.map";
 var b = new Map();
 ```
 
@@ -349,8 +349,8 @@ import "@babel/polyfill";
 **Out (different based on environment)**
 
 ```js
-import "core-js/modules/es7.string.pad-start";
-import "core-js/modules/es7.string.pad-end";
+import "core-js/modules/es.string.pad-start";
+import "core-js/modules/es.string.pad-end";
 ```
 
 This will also work for `core-js` directly (`import "core-js";` or `require('core-js');`)
@@ -567,12 +567,13 @@ Using plugins:
   @babel/plugin-transform-async-to-generator {}
 
 Using polyfills:
-  es7.object.values {}
-  es7.object.entries {}
-  es7.object.get-own-property-descriptors {}
+  es.object.values {}
+  es.object.entries {}
+  es.object.get-own-property-descriptors {}
   web.timers {}
   web.immediate {}
-  web.dom.iterable {}
+  web.dom-collections.for-each {}
+  web.dom-collections.iterator {}
 ```
 
 ### Include and exclude specific plugins/built-ins
@@ -586,8 +587,8 @@ Using polyfills:
       "targets": {
         "browsers": ["last 2 versions", "safari >= 7"]
       },
-      "include": ["transform-arrow-functions", "es6.map"],
-      "exclude": ["transform-regenerator", "es6.set"]
+      "include": ["transform-arrow-functions", "es.map"],
+      "exclude": ["transform-regenerator", "es.set"]
     }]
   ]
 }
